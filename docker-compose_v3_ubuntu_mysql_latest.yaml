@@ -236,9 +236,9 @@ services:
 
   zabbix-web-nginx-mysql:
     image: zabbix/zabbix-web-nginx-mysql:ubuntu-5.0-latest
-    ports:
-      - "8081:8080"
-      - "8443:8443"
+#    ports:
+#      - "8081:8080"
+#      - "8443:8443"
     links:
       - mysql-server:mysql-server
       - zabbix-server:zabbix-server
@@ -280,6 +280,7 @@ services:
           - zabbix-web-nginx-ubuntu-mysql
           - zabbix-web-nginx-mysql-ubuntu
       zbx_net_frontend:
+      reverse-proxy:
     stop_grace_period: 10s
     sysctls:
       - net.core.somaxconn=65535
@@ -432,19 +433,21 @@ networks:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
-#    ipam:
-#      driver: default
-#      config:
-#        - subnet: 172.16.238.0/24
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
   zbx_net_backend:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
     internal: true
-#    ipam:
-#      driver: default
-#      config:
-#        - subnet: 172.16.239.0/24
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.239.0/24
+  reverse-proxy:
+    external: true
 
 secrets:
   MYSQL_USER:
