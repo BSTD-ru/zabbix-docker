@@ -118,27 +118,27 @@ services:
 #      com.zabbix.dbtype: "sqlite3"
 #      com.zabbix.os: "ubuntu"
 
-  zabbix-proxy-mysql:
-    image: zabbix/zabbix-proxy-mysql:ubuntu-5.0-latest
-    ports:
-      - "10071:10051"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
-      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
-      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
-      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
-      - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
-      - ./zbx_env/var/lib/zabbix/snmptraps:/var/lib/zabbix/snmptraps:ro
-    links:
-      - zabbix-server:zabbix-server
+#  zabbix-proxy-mysql:
+#    image: zabbix/zabbix-proxy-mysql:ubuntu-5.0-latest
+#    ports:
+#      - "10071:10051"
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - /etc/timezone:/etc/timezone:ro
+#      - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
+#      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+#      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+#      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+#      - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
+#      - ./zbx_env/var/lib/zabbix/snmptraps:/var/lib/zabbix/snmptraps:ro
+#    links:
+#      - zabbix-server:zabbix-server
 #      - zabbix-java-gateway:zabbix-java-gateway
-    ulimits:
-      nproc: 65535
-      nofile:
-        soft: 20000
-        hard: 40000
+#    ulimits:
+#      nproc: 65535
+#      nofile:
+#        soft: 20000
+#        hard: 40000
 #    deploy:
 #      resources:
 #        limits:
@@ -147,29 +147,29 @@ services:
 #        reservations:
 #          cpus: '0.3'
 #          memory: 256M
-    env_file:
-      - .env_db_mysql_proxy
-      - .env_prx
-      - .env_prx_mysql
-    depends_on:
-      - mysql-server
+#    env_file:
+#      - .env_db_mysql_proxy
+#      - .env_prx
+#      - .env_prx_mysql
+#    depends_on:
+#      - mysql-server
 #      - zabbix-java-gateway
 #      - zabbix-snmptraps
 #    secrets:
 #      - MYSQL_USER
 #      - MYSQL_PASSWORD
 #      - MYSQL_ROOT_PASSWORD
-    #   - client-key.pem
-    #   - client-cert.pem
-    #   - root-ca.pem
-    networks:
-      zbx_net_backend:
-        aliases:
-          - zabbix-proxy-mysql
-          - zabbix-proxy-ubuntu-mysql
-          - zabbix-proxy-mysql-ubuntu
-      zbx_net_frontend:
-    stop_grace_period: 30s
+#    #   - client-key.pem
+#    #   - client-cert.pem
+#    #   - root-ca.pem
+#    networks:
+#      zbx_net_backend:
+#        aliases:
+#          - zabbix-proxy-mysql
+#          - zabbix-proxy-ubuntu-mysql
+#          - zabbix-proxy-mysql-ubuntu
+#      zbx_net_frontend:
+#    stop_grace_period: 30s
 #    labels:
 #      com.zabbix.description: "Zabbix proxy with MySQL database support"
 #      com.zabbix.company: "Zabbix LLC"
@@ -432,19 +432,19 @@ networks:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.16.238.0/24
   zbx_net_backend:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
     internal: true
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.239.0/24
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.16.239.0/24
 
 #secrets:
 #  MYSQL_USER:
