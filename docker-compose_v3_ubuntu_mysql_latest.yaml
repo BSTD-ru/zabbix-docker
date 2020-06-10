@@ -34,10 +34,10 @@ services:
     env_file:
       - .env_db_mysql
       - .env_srv
-#    secrets:
-#      - MYSQL_USER
-#      - MYSQL_PASSWORD
-#      - MYSQL_ROOT_PASSWORD
+    secrets:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
     #   - client-key.pem
     #   - client-cert.pem
     #   - root-ca.pem
@@ -258,9 +258,9 @@ services:
     env_file:
       - .env_db_mysql
       - .env_web
-#    secrets:
-#      - MYSQL_USER
-#      - MYSQL_PASSWORD
+    secrets:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
     #   - client-key.pem
     #   - client-cert.pem
     #   - root-ca.pem
@@ -397,10 +397,10 @@ services:
       - ./zbx_env/var/lib/mysql:/var/lib/mysql:rw
     env_file:
       - .env_db_mysql
-#    secrets:
-#      - MYSQL_USER
-#      - MYSQL_PASSWORD
-#      - MYSQL_ROOT_PASSWORD
+    secrets:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
     #   - server-key.pem
     #   - server-cert.pem
     #   - root-ca.pem
@@ -446,20 +446,20 @@ networks:
 #      config:
 #        - subnet: 172.16.239.0/24
 
-#secrets:
-#  MYSQL_USER:
-#    file: ./.MYSQL_USER
-#  MYSQL_PASSWORD:
-#    file: ./.MYSQL_PASSWORD
-#  MYSQL_ROOT_PASSWORD:
-#    file: ./.MYSQL_ROOT_PASSWORD
-##  client-key.pem:
-##    file: ./.ZBX_DB_KEY_FILE
-##  client-cert.pem:
-##    file: ./.ZBX_DB_CERT_FILE
-##  root-ca.pem:
-##    file: ./.ZBX_DB_CA_FILE
-##  server-cert.pem:
-##    file: ./.DB_CERT_FILE
-##  server-key.pem:
-##    file: ./.DB_KEY_FILE
+secrets:
+  MYSQL_USER:
+    file: ./.MYSQL_USER
+  MYSQL_PASSWORD:
+    file: ./.MYSQL_PASSWORD
+  MYSQL_ROOT_PASSWORD:
+    file: ./.MYSQL_ROOT_PASSWORD
+#  client-key.pem:
+#    file: ./.ZBX_DB_KEY_FILE
+#  client-cert.pem:
+#    file: ./.ZBX_DB_CERT_FILE
+#  root-ca.pem:
+#    file: ./.ZBX_DB_CA_FILE
+#  server-cert.pem:
+#    file: ./.DB_CERT_FILE
+#  server-key.pem:
+#    file: ./.DB_KEY_FILE
